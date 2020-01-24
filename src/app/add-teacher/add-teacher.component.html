@@ -1,0 +1,33 @@
+<body>
+    <div class="loading-shade" *ngIf="isLoadingResults">
+       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <mat-card class="container" *ngIf="isLoadingResults == false">
+        <form [formGroup]="teacherForm" (ngSubmit)="onFormSubmit(teacherForm.value)">
+            <h1 class="title">Add Teacher</h1>
+            <div class="input-container">
+                <mat-form-field>
+                    <input matInput placeholder="Name" formControlName="name" [errorStateMatcher]="matcher">
+                    <mat-error>
+                        <span *ngIf="!teacherForm.get('name').valid && teacherForm.get('name').touched">Please enter Name</span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+                    <mat-error>
+                        <span *ngIf="!teacherForm.get('email').valid && teacherForm.get('email').touched">Please enter Email</span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="address" [errorStateMatcher]="matcher">
+                    <mat-error>
+                        <span *ngIf="!teacherForm.get('address').valid && teacherForm.get('address').touched">Please enter Address</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="btn-container">
+                <button type="submit" [disabled]="!teacherForm.valid" class="btn" mat-raised-button color="primary">Submit</button>
+            </div>
+        </form>
+    </mat-card>
+</body>
