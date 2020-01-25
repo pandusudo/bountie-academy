@@ -4,6 +4,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Teacher } from './teacher';
 import { Student } from './student';
+import { Class } from './class';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -97,18 +98,50 @@ export class DataService {
         );
     }
 
+    getClasses (): Observable<Class[]> {
+        return this.http.get<Class[]>(apiUrl + '/class')
+        .pipe(
+            tap(teachers => console.log('Fetch classes')),
+            catchError(this.handleError('getClasses', []))
+        );
+    }
+
+    getClass (id: number): Observable<Class> {
+        return this.http.get<Class>(apiUrl + '/class/' + id)
+        .pipe(
+            tap(_ => console.log('Fetch class')),
+            catchError(this.handleError<Class>(`getClass id=${id}`))
+        );
+    }
+
+    // addClass (data): Observable<Class> {
+    //     return this.http.post<Class>(apiUrl + '/class', data, httpOptions).pipe(
+    //         tap((data: Class) => console.log(`added class `)),
+    //         catchError(this.handleError<Class>('addClass'))
+    //     );
+    // }
+
+    // updateStudent (id, student): Observable<any> {
+    //     const url = `${apiUrl}/students/${id}`;
+    //     return this.http.put(url, student, httpOptions).pipe(
+    //         tap(_ => console.log(`updated student id=${id}`)),
+    //         catchError(this.handleError<any>('updateStudent'))
+    //     );
+    // }
+
+    deleteClass (id): Observable<Class> {
+        const url = `${apiUrl}/class/${id}`;
+
+        return this.http.delete<Class>(url, httpOptions).pipe(
+            tap(_ => console.log(`deleted class id=${id}`)),
+            catchError(this.handleError<Class>('deleteClass'))
+        );
+    }
+
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
-
-            // Let the app keep running by returning an empty result.
+            console.error(error);
             return of(result as T);
         };
     }
-
-    // public sendGetRequest(str){
-    //     return this.httpClient.get(this.REST_API_SERVER + "/" + str);
-    // }
 }
