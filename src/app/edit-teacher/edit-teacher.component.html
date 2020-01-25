@@ -4,7 +4,7 @@
     </div>
     <mat-card class="container" *ngIf="isLoadingResults == false">
         <form [formGroup]="teacherForm" (ngSubmit)="onFormSubmit(teacherForm.value)">
-            <h1 class="title">Add Teacher</h1>
+            <h1 class="title">Edit Teacher</h1>
             <div class="input-container">
                 <mat-form-field>
                     <input matInput placeholder="Name" formControlName="name" [errorStateMatcher]="matcher">

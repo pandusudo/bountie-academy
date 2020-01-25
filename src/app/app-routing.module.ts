@@ -5,9 +5,11 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { HomeComponent } from "./home/home.component";
 import { AddTeacherComponent } from "./add-teacher/add-teacher.component"
 import { EditTeacherComponent } from "./edit-teacher/edit-teacher.component";
+import { StudentComponent } from "./student/student.component"
 
 const routes: Routes = [
     { path: 'teacher', component: TeacherComponent },
+    { path: 'student', component: StudentComponent },
     { path: 'home', component: HomeComponent },
     { path: 'editTeacher/:id', component: EditTeacherComponent },
     { path: 'addTeacher', component: AddTeacherComponent },

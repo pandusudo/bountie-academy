@@ -11,7 +11,7 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 export class EditTeacherComponent implements OnInit {
 
     teacherForm: FormGroup;
-    id: string="";
+    id: string='';
     name:string='';
     email:string='';
     address:string='';
@@ -38,4 +38,19 @@ export class EditTeacherComponent implements OnInit {
             });
         });
     }
+
+    onFormSubmit(form:NgForm) {
+        this.isLoadingResults = true;
+        this.dataService.updateTeacher(this.id, form)
+        .subscribe(res => {
+            let id = res['id'];
+            this.isLoadingResults = false;
+            this.router.navigate(['/teacher']);
+        }, (err) => {
+            console.log(this.id)
+            console.log(err);
+            this.isLoadingResults = false;
+        }
+    );
+}
 }

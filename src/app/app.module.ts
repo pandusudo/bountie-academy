@@ -11,6 +11,7 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { HomeComponent } from './home/home.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
         TeacherComponent,
         HomeComponent,
         AddTeacherComponent,
-        EditTeacherComponent
+        EditTeacherComponent,
+        StudentComponent
     ],
     imports: [
         FormsModule,
