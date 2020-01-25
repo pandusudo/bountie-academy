@@ -10,7 +10,7 @@ import { Student } from '../student'
 })
 export class StudentComponent implements OnInit {
 
-    displayedColumns: string[] = ['name'];
+    displayedColumns: string[] = ['name','id'];
     data: Student[] = [];
     isLoadingResults = true;
 
@@ -27,4 +27,26 @@ export class StudentComponent implements OnInit {
             this.isLoadingResults = false;
         });
     }
+
+    deleteStudent(id) {
+        this.isLoadingResults = true;
+        this.dataService.deleteStudent(id)
+        .subscribe(res => {
+            this.isLoadingResults = false;
+            this.dataService.getStudents()
+            .subscribe(res => {
+                this.data = res;
+                console.log(this.data);
+                this.isLoadingResults = false;
+            }, err => {
+                console.log(err);
+                this.isLoadingResults = false;
+            });
+            this.router.navigate(['/student']);
+        }, (err) => {
+            console.log(err);
+            this.isLoadingResults = false;
+        }
+    );
+}
 }

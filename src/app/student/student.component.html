@@ -5,7 +5,7 @@
     <div class="table-container">
         <mat-card *ngIf="isLoadingResults == false">
             <h1 class="title">Students Data</h1>
-            <button mat-button class="add-button" routerLink="/addTeacher" color="accent">Add Student</button>
+            <button mat-button class="add-button" routerLink="/addStudent" color="accent">Add Student</button>
             <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="name" matSortDisableClear matSortDirection="asc">
 
                 <ng-container matColumnDef="name">
@@ -13,8 +13,13 @@
                     <td mat-cell *matCellDef="let row">{{row.name}}</td>
                 </ng-container>
 
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let row"><button mat-raised-button color="warn" (click)="deleteStudent(row.id)">Delete</button></td>
+                </ng-container>
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/editTeacher/', row.id]"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/editStudent/', row.id]"></tr>
             </table>
         </mat-card>
     </div>

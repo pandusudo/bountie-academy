@@ -6,6 +6,7 @@ import { HomeComponent } from "./home/home.component";
 import { AddTeacherComponent } from "./add-teacher/add-teacher.component"
 import { EditTeacherComponent } from "./edit-teacher/edit-teacher.component";
 import { StudentComponent } from "./student/student.component"
+import { AddStudentComponent } from './add-student/add-student.component';
 
 const routes: Routes = [
     { path: 'teacher', component: TeacherComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'editTeacher/:id', component: EditTeacherComponent },
     { path: 'addTeacher', component: AddTeacherComponent },
+    { path: 'addStudent', component: AddStudentComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
