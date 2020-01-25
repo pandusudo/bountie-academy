@@ -3,6 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Teacher } from './teacher';
+import { Student } from './student';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
